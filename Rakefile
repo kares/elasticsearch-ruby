@@ -49,9 +49,6 @@ def admin_client
   end
 end
 
-# TODO: Figure out "bundle exec or not"
-# subprojects.each { |project| $LOAD_PATH.unshift CURRENT_PATH.join(project, "lib").to_s }
-
 task :default do
   system "rake --tasks"
 end
@@ -64,27 +61,6 @@ task :subprojects do
     version =  Gem::Specification::load(CURRENT_PATH.join(project, "#{project}.gemspec").to_s).version.to_s
     puts "#{version}".ljust(10) +
          "| \e[1m#{project.ljust(SUBPROJECTS.map {|s| s.length}.max)}\e[0m | #{commit[ 0..80]}..."
-  end
-end
-
-desc "Alias for `bundle:install`"
-task :bundle => 'bundle:install'
-
-namespace :bundle do
-  desc "Run `bundle install` in all subprojects"
-  task :install do
-    SUBPROJECTS.each do |project|
-      puts '-'*80
-      sh "cd #{CURRENT_PATH.join(project)} && unset BUNDLE_GEMFILE && bundle install"
-      puts
-    end
-  end
-
-  desc "Remove Gemfile.lock in all subprojects"
-  task :clean do
-    SUBPROJECTS.each do |project|
-      sh "rm -f #{CURRENT_PATH.join(project)}/Gemfile.lock"
-    end
   end
 end
 

@@ -69,10 +69,6 @@ before_install:
     bundle exec rake -I elasticsearch-extensions/lib test:cluster:start &&
     curl http://localhost:9250/_cluster/health?level=shards || true
 
-install:
-  - rake bundle:clean
-  - rake bundle:install
-
 script:
   - rake test:$TEST_SUITE
 

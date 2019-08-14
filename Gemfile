@@ -4,10 +4,12 @@
 
 source 'https://rubygems.org'
 
-gem 'elasticsearch-api',        :path => File.expand_path("../elasticsearch-api", __FILE__),        require: false
-gem 'elasticsearch-transport',  :path => File.expand_path("../elasticsearch-transport", __FILE__),  require: false
-gem 'elasticsearch-extensions', :path => File.expand_path("../elasticsearch-extensions", __FILE__), require: false
-gem 'elasticsearch',            :path => File.expand_path("../elasticsearch", __FILE__),            require: false
+gem 'elasticsearch-api',        path: File.expand_path("../elasticsearch-api", __FILE__),        require: false
+gem 'elasticsearch-dsl',        path: File.expand_path("../elasticsearch-dsl", __FILE__),        require: false
+gem 'elasticsearch-transport',  path: File.expand_path("../elasticsearch-transport", __FILE__),  require: false
+gem 'elasticsearch-extensions', path: File.expand_path("../elasticsearch-extensions", __FILE__), require: false
+gem 'elasticsearch-xpack',      path: File.expand_path("../elasticsearch-xpack", __FILE__),      require: false
+gem 'elasticsearch',            path: File.expand_path("../elasticsearch", __FILE__),            require: false
 
 gem "rake", require: false
 gem "pry", require: false

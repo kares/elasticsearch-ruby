@@ -8,7 +8,6 @@ UNIT_TESTED_PROJECTS = [ 'elasticsearch',
 INTEGRATION_TESTED_PROJECTS = (UNIT_TESTED_PROJECTS - ['elasticsearch-api']).freeze
 
 namespace :test do
-  task :bundle => 'bundle:install'
 
   desc "Run all tests in all subprojects"
   task :client => [ :unit, :integration ]
@@ -17,7 +16,7 @@ namespace :test do
   task :unit do
     UNIT_TESTED_PROJECTS.each do |project|
       puts '-'*80
-      sh "cd #{CURRENT_PATH.join(project)} && unset BUNDLE_GEMFILE && unset BUNDLE_PATH && unset BUNDLE_BIN && bundle exec rake test:unit"
+      sh "cd #{CURRENT_PATH.join(project)} && bundle exec rake test:unit"
       puts "\n"
     end
   end
@@ -26,7 +25,7 @@ namespace :test do
   task :integration do
     INTEGRATION_TESTED_PROJECTS.each do |project|
       puts '-'*80
-      sh "cd #{CURRENT_PATH.join(project)} && unset BUNDLE_GEMFILE && bundle exec rake test:integration"
+      sh "cd #{CURRENT_PATH.join(project)} && bundle exec rake test:integration"
       puts "\n"
     end
   end
@@ -36,7 +35,7 @@ namespace :test do
   desc "Run rest api tests"
   task :rest_api => ['elasticsearch:update', 'elasticsearch:wait_for_green'] do
     puts '-' * 80
-    sh "cd #{CURRENT_PATH.join('elasticsearch-api')} && unset BUNDLE_GEMFILE && bundle exec rake test:integration"
+    sh "cd #{CURRENT_PATH.join('elasticsearch-api')} && bundle exec rake test:integration"
     puts "\n"
   end
 
@@ -45,7 +44,7 @@ namespace :test do
     Rake::Task['elasticsearch:wait_for_green'].invoke
     Rake::Task['elasticsearch:checkout_build'].invoke
     puts '-' * 80
-    sh "cd #{CURRENT_PATH.join('elasticsearch-xpack')} && unset BUNDLE_GEMFILE && bundle exec rake test:rest_api"
+    sh "cd #{CURRENT_PATH.join('elasticsearch-xpack')} && bundle exec rake test:rest_api"
     puts "\n"
   end
 
