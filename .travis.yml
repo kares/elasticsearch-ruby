@@ -8,6 +8,8 @@ sudo: required
 
 language: ruby
 
+jdk: openjdk8
+
 branches:
   only:
     - master
@@ -27,29 +29,24 @@ matrix:
 
     # Unit tests
     - rvm: ruby-head
-      jdk: oraclejdk8
       env: TEST_SUITE=unit
 
     - rvm: 2.6.2
-      jdk: oraclejdk8
       env: TEST_SUITE=unit
 
     - rvm: 2.3.8
-      jdk: oraclejdk8
       env: TEST_SUITE=unit
 
-    - rvm: jruby-9.2.7.0
-      jdk: oraclejdk8
+    - rvm: jruby-9.2.8.0
       env: TEST_SUITE=unit
 
     # Integration tests
     - rvm: 2.6.2
-      jdk: oraclejdk8
+      env: QUIET=y TEST_SUITE=integration
       env: QUIET=y TEST_SUITE=integration
 
   allow_failures:
     - rvm: ruby-head
-      jdk: oraclejdk8
       env: TEST_SUITE=unit
 
 before_install:
