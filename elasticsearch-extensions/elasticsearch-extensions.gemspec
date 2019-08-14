@@ -31,11 +31,7 @@ Gem::Specification.new do |s|
 
   s.add_development_dependency "bundler"
 
-  if defined?(RUBY_VERSION) && RUBY_VERSION > '1.9'
-    s.add_development_dependency "rake", "~> 11.1"
-  else
-    s.add_development_dependency "rake", "< 11.0"
-  end
+  s.add_development_dependency "rake", "~> 11.1"
 
   s.add_development_dependency "awesome_print"
 
@@ -51,9 +47,5 @@ Gem::Specification.new do |s|
   unless defined?(JRUBY_VERSION)
     s.add_development_dependency 'oj'
     s.add_development_dependency 'patron'
-  end
-
-  if defined?(RUBY_VERSION) && RUBY_VERSION < '1.9'
-    s.add_development_dependency "json", '~> 1.8'
   end
 end

@@ -139,10 +139,8 @@ end
 
 # ----- Code analysis tasks ---------------------------------------------------
 
-if defined?(RUBY_VERSION) && RUBY_VERSION > '1.9'
-  require 'cane/rake_task'
-  Cane::RakeTask.new(:quality) do |cane|
-    cane.abc_max = 15
-    cane.no_style = true
-  end
+require 'cane/rake_task'
+Cane::RakeTask.new(:quality) do |cane|
+  cane.abc_max = 15
+  cane.no_style = true
 end

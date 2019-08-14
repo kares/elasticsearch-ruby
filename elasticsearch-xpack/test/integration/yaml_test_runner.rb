@@ -2,8 +2,7 @@
 # Elasticsearch B.V licenses this file to you under the Apache 2.0 License.
 # See the LICENSE file in the project root for more information
 
-RUBY_1_8 = defined?(RUBY_VERSION) && RUBY_VERSION < '1.9'
-JRUBY    = defined?(JRUBY_VERSION)
+JRUBY = defined?(JRUBY_VERSION)
 
 require 'pathname'
 require 'logger'

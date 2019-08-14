@@ -10,21 +10,14 @@ ELASTICSEARCH_HOSTS = if hosts = ENV['TEST_ES_SERVER'] || ENV['ELASTICSEARCH_HOS
 
 TEST_HOST, TEST_PORT = ELASTICSEARCH_HOSTS.first.split(':') if ELASTICSEARCH_HOSTS
 
+JRUBY = defined?(JRUBY_VERSION)
 
-RUBY_1_8 = defined?(RUBY_VERSION) && RUBY_VERSION < '1.9'
-JRUBY    = defined?(JRUBY_VERSION)
-
-if RUBY_1_8 and not ENV['BUNDLE_GEMFILE']
-  require 'rubygems'
-  gem 'test-unit'
-end
-
-if ENV['COVERAGE'] && ENV['CI'].nil? && !RUBY_1_8
+if ENV['COVERAGE'] && ENV['CI'].nil?
   require 'simplecov'
   SimpleCov.start { add_filter "/test|test_/" }
 end
 
-if ENV['CI'] && !RUBY_1_8
+if ENV['CI']
   require 'simplecov'
   require 'simplecov-rcov'
   SimpleCov.formatter = SimpleCov::Formatter::RcovFormatter
@@ -32,7 +25,6 @@ if ENV['CI'] && !RUBY_1_8
 end
 
 require 'ansi'
-require 'test/unit' if RUBY_1_8
 require 'minitest/autorun'
 require 'minitest/reporters'
 require 'shoulda/context'
