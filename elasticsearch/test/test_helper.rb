@@ -26,9 +26,7 @@ end
 
 # Register `at_exit` handler for integration tests shutdown.
 # MUST be called before requiring `test/unit`.
-if defined?(RUBY_VERSION) && RUBY_VERSION > '1.9'
-  at_exit { Elasticsearch::Test::IntegrationTestCase.__run_at_exit_hooks }
-end
+at_exit { Elasticsearch::Test::IntegrationTestCase.__run_at_exit_hooks }
 
 require 'minitest/autorun'
 require 'minitest/reporters'
@@ -79,7 +77,7 @@ module Elasticsearch
 
       shutdown { Elasticsearch::Extensions::Test::Cluster.stop if ENV['SERVER'] && started? && Elasticsearch::Extensions::Test::Cluster.running? }
 
-    end if defined?(RUBY_VERSION) && RUBY_VERSION > '1.9'
+    end
   end
 
   module Test
