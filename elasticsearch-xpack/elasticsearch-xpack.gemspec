@@ -24,7 +24,6 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency "bundler"
   spec.add_development_dependency "rake", "~> 11.1"
-  spec.add_development_dependency "ruby-prof" unless defined?(JRUBY_VERSION) || defined?(Rubinius)
 
   spec.add_dependency "elasticsearch-api", '>= 6'
 
@@ -34,10 +33,12 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency "activesupport"
   spec.add_development_dependency "ansi"
+
   spec.add_development_dependency "minitest"
   spec.add_development_dependency "minitest-reporters"
   spec.add_development_dependency "shoulda-context"
   spec.add_development_dependency "mocha"
+
   spec.add_development_dependency "yard"
-  spec.add_development_dependency "pry"
+  spec.add_development_dependency "cane"
 end

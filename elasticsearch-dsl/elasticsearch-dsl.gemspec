@@ -33,14 +33,13 @@ Gem::Specification.new do |s|
   s.add_development_dependency "elasticsearch"
   s.add_development_dependency "elasticsearch-extensions"
 
-  s.add_development_dependency 'shoulda-context'
-  s.add_development_dependency 'mocha'
-  s.add_development_dependency 'minitest', '~> 5'
-  s.add_development_dependency 'minitest-reporters', '~> 1'
-  s.add_development_dependency 'simplecov'
-  s.add_development_dependency 'yard'
-  s.add_development_dependency 'cane'
-  s.add_development_dependency 'pry'
+  s.add_development_dependency "minitest"
+  s.add_development_dependency "minitest-reporters"
+  s.add_development_dependency "shoulda-context"
+  s.add_development_dependency "mocha"
+
+  s.add_development_dependency "yard"
+  s.add_development_dependency "cane"
 
   if defined?(RUBY_VERSION) && RUBY_VERSION > '2.2'
     s.add_development_dependency "test-unit", '~> 2'
